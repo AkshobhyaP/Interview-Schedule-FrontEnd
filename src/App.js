@@ -82,13 +82,16 @@ function App() {
     var flag = true;
     allInterview.forEach((interview) => {
       if (interview.date.localeCompare(JSON.stringify(selectedDate)) === 0) {
+        console.log('date')
         if ((startTime.localeCompare(interview.startTime) >= 0 && interview.endTime.localeCompare(startTime) >= 0) ||
           (endTime.localeCompare(interview.startTime) >= 0 && interview.endTime.localeCompare(endTime) >= 0)) {
+            console.log(time)
           let participantObj = JSON.parse(interview.participants)
           participant.forEach((current) => {
             participantObj.forEach((previous) => {
               if (JSON.stringify(current) === JSON.stringify(previous)) {
                 flag = false;
+                console.log('participant')
               }
             })
           })
