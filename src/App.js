@@ -28,7 +28,7 @@ function App() {
     padding: '10px',
     color: 'rgb(63, 179, 247)'
   }
-  
+
   useEffect(() => {
     getAllInterviews()
     getEmail()
@@ -37,6 +37,7 @@ function App() {
   const getEmail = async () => {
     const res = []
     Axios.get('https://interview-schedulor.herokuapp.com/api/get/email').then((response) => {
+      console.log(response)
       response.data.forEach((item) => {
         const obj = { label: item.email, value: item.email }
         res.push(obj)
@@ -48,6 +49,7 @@ function App() {
   const getAllInterviews = async () => {
     const res = []
     Axios.get('https://interview-schedulor.herokuapp.com/api/get/interview').then((response) => {
+      console.log(response)
       response.data.forEach((item) => {
         var participantString = ""
         let obj = JSON.parse(item.participants)
@@ -85,7 +87,7 @@ function App() {
           let participantObj = JSON.parse(interview.participants)
           participant.forEach((current) => {
             participantObj.forEach((previous) => {
-              if(JSON.stringify(current) === JSON.stringify(previous)){
+              if (JSON.stringify(current) === JSON.stringify(previous)) {
                 flag = false;
               }
             })
@@ -114,16 +116,16 @@ function App() {
     })
   };
 
-  const edit = async(interview) =>{
+  const edit = async (interview) => {
     var id = interview.idSchedule
-    Axios.delete(`https://interview-schedulor.herokuapp.com/api/delete/${id}`).then((response) =>{
+    Axios.delete(`https://interview-schedulor.herokuapp.com/api/delete/${id}`).then((response) => {
       getAllInterviews()
-      setSelectedDate(new Date(interview.date.substring(1,11)))
+      setSelectedDate(new Date(interview.date.substring(1, 11)))
       startTimeChange(interview.startTime)
       endTimeChange(interview.endTime)
       particpantChange(JSON.parse(interview.participants))
-    } )
-  } 
+    })
+  }
 
   return (
     <div className="App">
@@ -204,7 +206,7 @@ function App() {
                 <td>{interview.endTime}</td>
                 <td>{interview.participantString}</td>
                 <td>
-                  <button onClick = { () => edit(interview)}
+                  <button onClick={() => edit(interview)}
                   >
                     Edit</button>
                 </td>
