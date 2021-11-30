@@ -82,7 +82,7 @@ function App() {
     var flag = true;
     allInterview.forEach((interview) => {
       console.log(interview.date + "      " + JSON.stringify(selectedDate))
-      if (interview.date.localeCompare(JSON.stringify(selectedDate)) === 0) {
+      if (interview.date.substring(0,10).localeCompare(JSON.stringify(selectedDate).substring(0,10)) === 0) {
         console.log('date')
         if ((startTime.localeCompare(interview.startTime) >= 0 && interview.endTime.localeCompare(startTime) >= 0) ||
           (endTime.localeCompare(interview.startTime) >= 0 && interview.endTime.localeCompare(endTime) >= 0)) {
