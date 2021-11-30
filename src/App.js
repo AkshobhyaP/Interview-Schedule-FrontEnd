@@ -85,7 +85,7 @@ function App() {
         console.log('date')
         if ((startTime.localeCompare(interview.startTime) >= 0 && interview.endTime.localeCompare(startTime) >= 0) ||
           (endTime.localeCompare(interview.startTime) >= 0 && interview.endTime.localeCompare(endTime) >= 0)) {
-            console.log(time)
+            console.log('time')
           let participantObj = JSON.parse(interview.participants)
           participant.forEach((current) => {
             participantObj.forEach((previous) => {
